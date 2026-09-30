@@ -1,119 +1,37 @@
-<!doctype html>
-<html lang="de">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#111"><title>STELKENS V2</title>
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111"><title>STELKENS</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#f3f3f3;color:#151515;font-family:Arial,sans-serif}
-header{background:#111;color:#fff;padding:20px;position:sticky;top:0;z-index:10}.brand{font-size:27px;font-weight:800;letter-spacing:3px}.small{color:#aaa;font-size:12px}
-nav{display:flex;gap:7px;overflow:auto;background:#fff;padding:9px;position:sticky;top:73px;z-index:9;border-bottom:1px solid #ddd}
-nav button{white-space:nowrap}.active{background:#111!important;color:#fff!important}
-main{max-width:1000px;margin:auto;padding:14px}.tab{display:none}.tab.activeTab{display:block}
-.card{background:#fff;border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 2px 8px #0001}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-label{display:block;font-size:12px;color:#666;margin-bottom:4px}input,select,textarea{width:100%;padding:11px;border:1px solid #ddd;border-radius:9px;font-size:15px}textarea{min-height:75px}
-button{border:0;border-radius:9px;padding:10px 14px;font-weight:700;cursor:pointer}.primary{background:#111;color:white}.secondary{background:#e8e8e8}.danger{background:#fee;color:#a00}
-.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.row{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:8px 0}.grand{font-size:20px;font-weight:800}
-table{width:100%;border-collapse:collapse;margin-top:10px}th,td{padding:8px;border-bottom:1px solid #eee;text-align:left;font-size:13px}th{background:#f5f5f5}
-.item{border:1px solid #e5e5e5;border-radius:10px;padding:12px;margin:8px 0}.muted{color:#777}
-@media(max-width:650px){.grid,.grid3{grid-template-columns:1fr}nav{top:73px}}
-@media print{header,nav,.noPrint{display:none!important}body{background:white}.card{box-shadow:none;border:0}}
-</style></head>
-<body>
-<header><div class="brand">STELKENS</div><div class="small">Aufträge · Kalkulation · Rechnungen</div></header>
-<nav>
-<button class="active" onclick="tab('rechnung',this)">🧾 Rechnung</button>
-<button onclick="tab('kunden',this)">👥 Kunden</button>
-<button onclick="tab('artikel',this)">📦 Artikel</button>
-<button onclick="tab('kalk',this)">🧮 Kalkulation</button>
-<button onclick="tab('archiv',this)">📋 Archiv</button>
-<button onclick="tab('firma',this)">⚙️ Firma</button>
-</nav>
+*{box-sizing:border-box}body{margin:0;background:#f3f3f3;color:#151515;font-family:Arial,sans-serif}header{background:#111;color:#fff;padding:20px;position:sticky;top:0;z-index:5}.logo{font-size:27px;font-weight:800;letter-spacing:3px}.sub{color:#aaa;font-size:12px}nav{display:flex;gap:6px;overflow:auto;background:#fff;padding:9px;position:sticky;top:70px;z-index:4}nav button{white-space:nowrap}.active{background:#111!important;color:#fff!important}main{max-width:1050px;margin:auto;padding:14px}.tab{display:none}.on{display:block}.card{background:#fff;border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 2px 8px #0001}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}label{display:block;font-size:12px;color:#666;margin-bottom:4px}input,select{width:100%;padding:11px;border:1px solid #ddd;border-radius:9px;font-size:15px}button{border:0;border-radius:9px;padding:11px 14px;font-weight:700}.primary{background:#111;color:#fff}.secondary{background:#e8e8e8}.danger{background:#fee;color:#a00}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.item{border:1px solid #e5e5e5;border-radius:10px;padding:12px;margin:8px 0}.row{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:8px 0}.grand{font-size:21px;font-weight:800}.hint{background:#f7f7f7;border-radius:9px;padding:10px;margin-top:10px}.muted{color:#777;font-size:13px}@media(max-width:650px){.grid,.grid3{grid-template-columns:1fr}}@media print{header,nav,.noPrint{display:none!important}body{background:#fff}.card{box-shadow:none}}
+</style></head><body>
+<header><div class="logo">STELKENS</div><div class="sub">Holzverpackungen · Kalkulation · Rechnungen</div></header>
+<nav><button class="active" onclick="show('rechnung',this)">🧾 Rechnung</button><button onclick="show('kalk',this)">🪵 Kisten</button><button onclick="show('kunden',this)">👥 Kunden</button><button onclick="show('artikel',this)">📦 Artikel</button><button onclick="show('archiv',this)">📋 Archiv</button></nav>
 <main>
-
-<section id="rechnung" class="tab activeTab">
-<div class="card">
-<h2>Neue Rechnung</h2>
-<div class="grid">
-<div><label>Rechnungsnummer</label><input id="invNo"></div>
-<div><label>Datum</label><input id="invDate" type="date"></div>
-<div><label>Kunde</label><select id="customerSelect"></select></div>
-<div><label>Zahlungsziel (Tage)</label><input id="dueDays" type="number" value="14"></div>
-</div>
-<h3>Positionen</h3>
-<div id="lines"></div>
-<div class="actions noPrint"><button class="secondary" onclick="addLine()">+ Position</button><button class="secondary" onclick="addBoxLine()">+ Holzkiste</button></div>
-</div>
-<div class="card">
-<h2>Summen</h2>
-<div class="row"><span>Netto</span><b id="rNet">0,00 €</b></div>
-<div class="row"><span>MwSt. 19 %</span><b id="rVat">0,00 €</b></div>
-<div class="row grand"><span>Gesamt</span><b id="rGross">0,00 €</b></div>
-<div class="actions noPrint"><button class="primary" onclick="printInvoice()">🖨️ Rechnung / PDF</button><button class="secondary" onclick="saveInvoice()">💾 Rechnung speichern</button><button class="secondary" onclick="newInvoice()">＋ Neue Rechnung</button></div>
-</div>
-<div id="printInvoice" class="card" style="display:none"></div>
-</section>
-
-<section id="kunden" class="tab">
-<div class="card"><h2>Kundenverwaltung</h2>
-<div class="grid">
-<div><label>Name / Firma</label><input id="cName"></div><div><label>E-Mail</label><input id="cEmail"></div>
-<div><label>Telefon</label><input id="cPhone"></div><div><label>Adresse</label><input id="cAddress"></div>
-<div><label>PLZ / Ort</label><input id="cCity"></div>
-</div><div class="actions"><button class="primary" onclick="addCustomer()">Kunde speichern</button></div></div>
-<div class="card"><div id="customerList"></div></div>
-</section>
-
-<section id="artikel" class="tab">
-<div class="card"><h2>Artikel & Material</h2>
-<div class="grid3"><div><label>Bezeichnung</label><input id="aName"></div><div><label>Einheit</label><input id="aUnit" placeholder="m, m², Stück, Std."></div><div><label>Preis (€)</label><input id="aPrice" type="number" step=".01"></div></div>
-<div class="actions"><button class="primary" onclick="addArticle()">Artikel speichern</button></div></div>
-<div class="card"><div id="articleList"></div></div>
-</section>
-
-<section id="kalk" class="tab">
-<div class="card"><h2>Holzkisten-Kalkulation</h2>
-<div class="grid3">
-<div><label>Länge (m)</label><input id="kL" type="number" step=".01" value="2.4"></div><div><label>Breite (m)</label><input id="kW" type="number" step=".01" value="1.2"></div><div><label>Höhe (m)</label><input id="kH" type="number" step=".01" value="1.5"></div>
-<div><label>Anzahl</label><input id="kQty" type="number" value="1"></div><div><label>Materialkosten je Kiste (€)</label><input id="kMat" type="number" step=".01" value="300"></div><div><label>Arbeitsstunden je Kiste</label><input id="kHours" type="number" step=".25" value="4"></div>
-<div><label>Stundensatz (€)</label><input id="kRate" type="number" step=".01" value="45"></div><div><label>Transport (€)</label><input id="kTransport" type="number" step=".01" value="120"></div><div><label>Aufschlag (%)</label><input id="kMarkup" type="number" step=".1" value="20"></div>
-</div>
-<div class="actions"><button class="primary" onclick="calcBox()">Kalkulieren</button><button class="secondary" onclick="useCalcInInvoice()">In Rechnung übernehmen</button></div>
-<div id="calcResult"></div>
-</div></section>
-
-<section id="archiv" class="tab"><div class="card"><h2>Rechnungsarchiv</h2><div id="archiveList"></div></div></section>
-
-<section id="firma" class="tab"><div class="card"><h2>Firmeneinstellungen</h2>
-<div class="grid"><div><label>Firmenname</label><input id="fName" value="STELKENS"></div><div><label>Telefon</label><input id="fPhone"></div><div><label>E-Mail</label><input id="fEmail"></div><div><label>Adresse</label><input id="fAddress"></div><div><label>PLZ / Ort</label><input id="fCity"></div><div><label>Steuernummer</label><input id="fTax"></div></div>
-<div class="actions"><button class="primary" onclick="saveFirm()">Firmendaten speichern</button></div></div></section>
-
+<section id="rechnung" class="tab on"><div class="card"><h2>Neue Rechnung</h2><div class="grid"><div><label>Rechnungsnummer</label><input id="invNo"></div><div><label>Datum</label><input id="invDate" type="date"></div><div><label>Kunde</label><select id="cust"></select></div><div><label>Zahlungsziel (Tage)</label><input id="due" type="number" value="14"></div></div><h3>Positionen</h3><div id="lines"></div><div class="actions noPrint"><button class="secondary" onclick="addLine()">+ Position</button><button class="secondary" onclick="addBox()">+ Holzkiste</button></div></div>
+<div class="card"><h2>Summen</h2><div class="row"><span>Netto</span><b id="net">0,00 €</b></div><div class="row"><span>MwSt. 19 %</span><b id="vat">0,00 €</b></div><div class="row grand"><span>Gesamt</span><b id="gross">0,00 €</b></div><div class="actions noPrint"><button class="primary" onclick="printInvoice()">🖨️ PDF / Drucken</button><button class="secondary" onclick="saveInvoice()">💾 Speichern</button></div></div></section>
+<section id="kalk" class="tab"><div class="card"><h2>🪵 Holzkisten-Kalkulation</h2><div class="grid3">
+<div><label>Länge (m)</label><input id="L" type="number" step=".01" value="2.40"></div><div><label>Breite (m)</label><input id="W" type="number" step=".01" value="1.20"></div><div><label>Höhe (m)</label><input id="H" type="number" step=".01" value="1.50"></div>
+<div><label>Anzahl Kisten</label><input id="Q" type="number" value="1"></div><div><label>Material je Kiste (€)</label><input id="M" type="number" step=".01" value="300"></div><div><label>Arbeitsstunden je Kiste</label><input id="AH" type="number" step=".25" value="4"></div><div><label>Stundensatz (€)</label><input id="AR" type="number" step=".01" value="45"></div><div><label>Transport (€)</label><input id="TR" type="number" step=".01" value="120"></div><div><label>Aufschlag (%)</label><input id="MK" type="number" step=".1" value="20"></div>
+</div><div class="actions"><button class="primary" onclick="calcBox()">Kalkulieren</button><button class="secondary" onclick="takeBox()">In Rechnung übernehmen</button></div><div id="boxResult"></div></div>
+<div class="card"><h2>Material-Schnellkalkulation</h2><div class="hint">Beispiel: 100 Holzspangen × 1,20 m × 0,60 €/m = 72,00 €</div><div class="grid3" style="margin-top:10px"><div><label>Menge</label><input id="smQ" type="number" step=".01" value="100"></div><div><label>Länge / Fläche / Volumen je Einheit</label><input id="smMeasure" type="number" step=".001" value="1.2"></div><div><label>Preis je Einheit</label><input id="smPrice" type="number" step=".01" value=".60"></div></div><div class="grid" style="margin-top:10px"><div><label>Berechnungsart</label><select id="smMode"><option value="m">Meter</option><option value="m2">m²</option><option value="m3">m³</option><option value="st">Stück</option></select></div><div><label>Ergebnis</label><input id="smResult" readonly></div></div><div class="actions"><button class="primary" onclick="quickCalc()">Berechnen</button><button class="secondary" onclick="quickToInvoice()">In Rechnung übernehmen</button></div></div></section>
+<section id="kunden" class="tab"><div class="card"><h2>Kundenverwaltung</h2><div class="grid"><div><label>Name / Firma</label><input id="cn"></div><div><label>E-Mail</label><input id="ce"></div><div><label>Telefon</label><input id="cp"></div><div><label>Adresse</label><input id="ca"></div><div><label>PLZ / Ort</label><input id="cc"></div></div><div class="actions"><button class="primary" onclick="newCustomer()">Kunde speichern</button></div></div><div class="card"><div id="customerList"></div></div></section>
+<section id="artikel" class="tab"><div class="card"><h2>Artikelverwaltung</h2><div class="grid3"><div><label>Artikel</label><input id="an"></div><div><label>Einheit</label><select id="au"><option>m</option><option>m²</option><option>m³</option><option>Stück</option><option>Std.</option><option>Pauschale</option></select></div><div><label>Preis (€)</label><input id="ap" type="number" step=".01"></div></div><div class="actions"><button class="primary" onclick="newArticle()">Artikel speichern</button></div></div><div class="card"><div id="articleList"></div></div></section>
+<section id="archiv" class="tab"><div class="card"><h2>Rechnungsarchiv</h2><div id="archive"></div></div></section>
 </main>
 <script>
-const €=n=>new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'}).format(+n||0);
-let customers=JSON.parse(localStorage.getItem('st_customers')||'[]'), articles=JSON.parse(localStorage.getItem('st_articles')||'[]'), invoices=JSON.parse(localStorage.getItem('st_invoices')||'[]'), calc={};
-const $=id=>document.getElementById(id);
-function tab(id,btn){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('activeTab'));$(id).classList.add('activeTab');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
-function euroInputs(){return}
-function newInvoice(){location.reload()}
+const money=n=>new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'}).format(Number(n)||0),$=id=>document.getElementById(id);
+let customers=JSON.parse(localStorage.getItem('st_customers')||'[]'),articles=JSON.parse(localStorage.getItem('st_articles')||'[]'),invoices=JSON.parse(localStorage.getItem('st_invoices')||'[]');
+function show(id,b){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));$(id).classList.add('on');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active')}
 function nextNo(){return 'RE-'+String(invoices.length+1).padStart(4,'0')}
-function init(){
- $('invNo').value=nextNo();$('invDate').value=new Date().toISOString().slice(0,10);renderCustomers();renderArticles();renderArchive();addLine();loadFirm()
-}
-function renderCustomers(){$('customerSelect').innerHTML='<option value="">Kunde auswählen</option>'+customers.map((c,i)=>`<option value="${i}">${c.name}</option>`).join('');$('customerList').innerHTML=customers.length?customers.map((c,i)=>`<div class="item"><b>${c.name}</b><div class="muted">${c.address||''} ${c.city||''}<br>${c.email||''} ${c.phone||''}</div><button class="danger noPrint" onclick="customers.splice(${i},1);persist();renderCustomers()">Löschen</button></div>`).join(''):'<span class="muted">Noch keine Kunden.</span>'}
-function addCustomer(){let c={name:$('cName').value,email:$('cEmail').value,phone:$('cPhone').value,address:$('cAddress').value,city:$('cCity').value};if(!c.name)return alert('Bitte Namen eingeben.');customers.push(c);persist();['cName','cEmail','cPhone','cAddress','cCity'].forEach(x=>$(x).value='');renderCustomers()}
-function renderArticles(){$('articleList').innerHTML=articles.length?articles.map((a,i)=>`<div class="item"><b>${a.name}</b> – ${a.price.toFixed(2)} € / ${a.unit}<button class="danger noPrint" style="float:right" onclick="articles.splice(${i},1);persist();renderArticles()">Löschen</button></div>`).join(''):'<span class="muted">Noch keine Artikel.</span>'}
-function addArticle(){let a={name:$('aName').value,unit:$('aUnit').value||'Stück',price:+$('aPrice').value||0};if(!a.name)return alert('Bezeichnung fehlt.');articles.push(a);persist();['aName','aUnit','aPrice'].forEach(x=>$(x).value='');renderArticles()}
-function addLine(name='',qty=1,unit='Stück',price=0){let d=document.createElement('div');d.className='item line';d.innerHTML=`<div class="grid"><div><label>Position</label><input class="ln" value="${name}" placeholder="z.B. Holzspange"></div><div><label>Einheit</label><input class="lu" value="${unit}"></div><div><label>Menge</label><input class="lq" type="number" step=".01" value="${qty}"></div><div><label>Einzelpreis (€)</label><input class="lp" type="number" step=".01" value="${price}"></div></div><div class="actions noPrint"><button class="danger" onclick="this.closest('.line').remove();calcInvoice()">Position entfernen</button></div>`;$('lines').appendChild(d);d.querySelectorAll('input').forEach(x=>x.addEventListener('input',calcInvoice));calcInvoice()}
-function addBoxLine(){addLine('Holzkiste','1','Stück',calc.net||0)}
-function calcInvoice(){let net=0;document.querySelectorAll('.line').forEach(x=>net+=(+x.querySelector('.lq').value||0)*(+x.querySelector('.lp').value||0));let vat=net*.19; $('rNet').textContent=€(net);$('rVat').textContent=€(vat);$('rGross').textContent=€(net+vat);return {net,vat,gross:net+vat}}
-function saveInvoice(){let s=calcInvoice(),c=customers[+$('customerSelect').value]||{};let inv={no:$('invNo').value,date:$('invDate').value,customer:c,lines:[...document.querySelectorAll('.line')].map(x=>({name:x.querySelector('.ln').value,unit:x.querySelector('.lu').value,qty:+x.querySelector('.lq').value||0,price:+x.querySelector('.lp').value||0})),...s};invoices.push(inv);persist();renderArchive();alert('Rechnung gespeichert.')}
-function printInvoice(){let s=calcInvoice(),c=customers[+$('customerSelect').value]||{};let firm=JSON.parse(localStorage.getItem('st_firm')||'{}');let rows=[...document.querySelectorAll('.line')].map(x=>`<tr><td>${x.querySelector('.ln').value}</td><td>${x.querySelector('.lq').value} ${x.querySelector('.lu').value}</td><td>${€(x.querySelector('.lp').value)}</td><td>${€((+x.querySelector('.lq').value||0)*(+x.querySelector('.lp').value||0))}</td></tr>`).join('');$('printInvoice').innerHTML=`<h1>${firm.name||'STELKENS'}</h1><p>${firm.address||''}<br>${firm.city||''}<br>${firm.email||''} ${firm.phone||''}</p><hr><h2>RECHNUNG ${$('invNo').value}</h2><p>Datum: ${$('invDate').value}</p><p><b>Rechnung an:</b><br>${c.name||'—'}<br>${c.address||''}<br>${c.city||''}<br>${c.email||''}</p><table><tr><th>Position</th><th>Menge</th><th>Einzelpreis</th><th>Gesamt</th></tr>${rows}</table><br><div class="row"><span>Netto</span><b>${€(s.net)}</b></div><div class="row"><span>MwSt. 19 %</span><b>${€(s.vat)}</b></div><div class="row grand"><span>Gesamt</span><b>${€(s.gross)}</b></div><p>Zahlungsziel: ${$('dueDays').value} Tage.</p>`;$('printInvoice').style.display='block';window.print();setTimeout(()=>$('printInvoice').style.display='none',500)}
-function renderArchive(){$('archiveList').innerHTML=invoices.length?invoices.slice().reverse().map((x,i)=>`<div class="item"><b>${x.no}</b> – ${x.customer.name||'Ohne Kunde'} – ${€(x.gross)}<div class="muted">${x.date}</div></div>`).join(''):'<span class="muted">Noch keine Rechnungen gespeichert.</span>'}
-function calcBox(){let q=+$('kQty').value||0,mat=+$('kMat').value||0,labor=(+$('kHours').value||0)*(+$('kRate').value||0),tr=+$('kTransport').value||0;let cost=q*(mat+labor)+tr, sell=cost*(1+(+$('kMarkup').value||0)/100);calc={net:sell};$('calcResult').innerHTML=`<div class="card"><div class="row"><span>Material</span><b>${€(q*mat)}</b></div><div class="row"><span>Arbeitszeit</span><b>${€(q*labor)}</b></div><div class="row"><span>Transport</span><b>${€(tr)}</b></div><div class="row"><span>Selbstkosten</span><b>${€(cost)}</b></div><div class="row"><span>Aufschlag</span><b>${€(sell-cost)}</b></div><div class="row grand"><span>Verkaufspreis netto</span><b>${€(sell)}</b></div></div>`}
-function useCalcInInvoice(){addLine(`Holzkiste ${$('kL').value} × ${$('kW').value} × ${$('kH').value} m`,$('kQty').value,'Stück',calc.net||0);tab('rechnung',document.querySelector('nav button'))}
-function saveFirm(){let f={name:$('fName').value,phone:$('fPhone').value,email:$('fEmail').value,address:$('fAddress').value,city:$('fCity').value,tax:$('fTax').value};localStorage.setItem('st_firm',JSON.stringify(f));alert('Firmendaten gespeichert.')}
-function loadFirm(){let f=JSON.parse(localStorage.getItem('st_firm')||'{}');for(let k of ['name','phone','email','address','city','tax'])if(f[k])$('f'+k[0].toUpperCase()+k.slice(1)).value=f[k]}
+function addLine(name='',qty=1,unit='Stück',price=0){let d=document.createElement('div');d.className='item line';d.innerHTML=`<div class="grid3"><div><label>Bezeichnung</label><input class="ln" value="${name}"></div><div><label>Menge</label><input class="lq" type="number" step=".001" value="${qty}"></div><div><label>Einheit</label><input class="lu" value="${unit}"></div></div><div class="grid" style="margin-top:8px"><div><label>Einzelpreis (€)</label><input class="lp" type="number" step=".01" value="${price}"></div><div class="actions noPrint"><button class="danger" onclick="this.closest('.line').remove();calcInvoice()">Entfernen</button></div></div>`;$('lines').appendChild(d);d.querySelectorAll('input').forEach(x=>x.addEventListener('input',calcInvoice));calcInvoice()}
+function calcInvoice(){let n=0;document.querySelectorAll('.line').forEach(x=>n+=(+x.querySelector('.lq').value||0)*(+x.querySelector('.lp').value||0));$('net').textContent=money(n);$('vat').textContent=money(n*.19);$('gross').textContent=money(n*1.19);return n}
+function calcBox(){let q=+$('Q').value||0,m=+$('M').value||0,l=(+$('AH').value||0)*(+$('AR').value||0),t=+$('TR').value||0,cost=q*(m+l)+t,sell=cost*(1+(+$('MK').value||0)/100);$('boxResult').innerHTML=`<div class="hint">Material: <b>${money(q*m)}</b><br>Arbeitszeit: <b>${money(q*l)}</b><br>Transport: <b>${money(t)}</b><br>Selbstkosten: <b>${money(cost)}</b><br>Aufschlag: <b>${money(sell-cost)}</b><br><strong>Verkaufspreis netto: ${money(sell)}</strong></div>`;return sell}
+function takeBox(){let p=calcBox(),q=+$('Q').value||1;addLine(`Holzkiste ${$('L').value} × ${$('W').value} × ${$('H').value} m`,q,'Stück',p/q);show('rechnung',document.querySelector('nav button'))}
+function quickCalc(){let q=+$('smQ').value||0,m=+$('smMeasure').value||0,p=+$('smPrice').value||0,mode=$('smMode').value,total=mode==='st'?q*p:q*m*p;$('smResult').value=money(total);return total}
+function quickToInvoice(){quickCalc();let mode=$('smMode').value,unit=mode==='m'?'m':mode==='m2'?'m²':mode==='m3'?'m³':'Stück';addLine('Holz / Material',$('smQ').value,unit,mode==='st'?+$('smPrice').value:(+$('smMeasure').value*+$('smPrice').value));show('rechnung',document.querySelector('nav button'))}
+function newCustomer(){let c={name:$('cn').value,email:$('ce').value,phone:$('cp').value,address:$('ca').value,city:$('cc').value};if(!c.name)return;customers.push(c);persist();render();['cn','ce','cp','ca','cc'].forEach(x=>$(x).value='')}
+function newArticle(){let a={name:$('an').value,unit:$('au').value,price:+$('ap').value||0};if(!a.name)return;articles.push(a);persist();render();$('an').value='';$('ap').value=''}
+function render(){$('cust').innerHTML='<option value="">Kunde auswählen</option>'+customers.map((c,i)=>`<option value="${i}">${c.name}</option>`).join('');$('customerList').innerHTML=customers.length?customers.map(c=>`<div class="item"><b>${c.name}</b><div class="muted">${c.address||''} ${c.city||''}<br>${c.email||''} ${c.phone||''}</div></div>`).join(''):'<span class="muted">Keine Kunden vorhanden.</span>';$('articleList').innerHTML=articles.length?articles.map(a=>`<div class="item"><b>${a.name}</b> – ${money(a.price)} / ${a.unit}</div>`).join(''):'<span class="muted">Keine Artikel vorhanden.</span>';$('archive').innerHTML=invoices.length?invoices.slice().reverse().map(x=>`<div class="item"><b>${x.no}</b> – ${x.customer||'Ohne Kunde'} – ${money(x.gross)}<div class="muted">${x.date}</div></div>`).join(''):'<span class="muted">Noch keine Rechnungen.</span>'}
+function saveInvoice(){let n=calcInvoice(),c=customers[+$('cust').value],lines=[...document.querySelectorAll('.line')].map(x=>({name:x.querySelector('.ln').value,qty:+x.querySelector('.lq').value||0,unit:x.querySelector('.lu').value,price:+x.querySelector('.lp').value||0}));invoices.push({no:$('invNo').value,date:$('invDate').value,customer:c?c.name:'',lines,net:n,vat:n*.19,gross:n*1.19});persist();render();alert('Rechnung gespeichert.')}
+function printInvoice(){let n=calcInvoice();window.print()}
 function persist(){localStorage.setItem('st_customers',JSON.stringify(customers));localStorage.setItem('st_articles',JSON.stringify(articles));localStorage.setItem('st_invoices',JSON.stringify(invoices))}
-init();
+$('invNo').value=nextNo();$('invDate').value=new Date().toISOString().slice(0,10);addLine();render();
 </script></body></html>
