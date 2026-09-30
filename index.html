@@ -1,10 +1,134 @@
 <!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111"><title>STELKENS</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#f3f3f3;color:#151515;font-family:Arial,sans-serif}header{background:#111;color:#fff;padding:20px;position:sticky;top:0;z-index:5}.logo{font-size:27px;font-weight:800;letter-spacing:3px}.sub{color:#aaa;font-size:12px}nav{display:flex;gap:6px;overflow:auto;background:#fff;padding:9px;position:sticky;top:70px;z-index:4}nav button{white-space:nowrap}.active{background:#111!important;color:#fff!important}main{max-width:1100px;margin:auto;padding:14px}.tab{display:none}.on{display:block}.card{background:#fff;border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 2px 8px #0001}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}label{display:block;font-size:12px;color:#666;margin-bottom:4px}input,select{width:100%;padding:11px;border:1px solid #ddd;border-radius:9px;font-size:15px}button{border:0;border-radius:9px;padding:11px 14px;font-weight:700}.primary{background:#111;color:#fff}.secondary{background:#e8e8e8}.danger{background:#fee;color:#a00}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.item{border:1px solid #e5e5e5;border-radius:10px;padding:12px;margin:8px 0}.row{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:8px 0}.grand{font-size:21px;font-weight:800}.hint{background:#f7f7f7;border-radius:9px;padding:10px;margin-top:10px}.muted{color:#777;font-size:13px}.resultGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.resultBox{background:#f7f7f7;border-radius:10px;padding:10px}.resultBox b{display:block;font-size:18px;margin-top:4px}.warn{background:#fff6dd;border-radius:9px;padding:10px;margin-top:10px}.ok{background:#eef8ee;border-radius:9px;padding:10px;margin-top:10px}@media(max-width:800px){.grid4{grid-template-columns:repeat(2,1fr)}}@media(max-width:650px){.grid,.grid3,.grid4,.resultGrid{grid-template-columns:1fr}}@media print{header,nav,.noPrint{display:none!important}body{background:#fff}.card{box-shadow:none}}
+*{box-sizing:border-box}body{margin:0;background:#f3f3f3;color:#151515;font-family:Arial,sans-serif}header{background:#111;color:#fff;padding:20px;position:sticky;top:0;z-index:5}.logo{font-size:27px;font-weight:800;letter-spacing:3px}.sub{color:#aaa;font-size:12px}nav{display:flex;gap:6px;overflow:auto;background:#fff;padding:9px;position:sticky;top:70px;z-index:4}nav button{white-space:nowrap}.active{background:#111!important;color:#fff!important}main{max-width:1100px;margin:auto;padding:14px}.tab{display:none}.on{display:block}.card{background:#fff;border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 2px 8px #0001}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}label{display:block;font-size:12px;color:#666;margin-bottom:4px}textarea,input,select{width:100%;padding:11px;border:1px solid #ddd;border-radius:9px;font-size:15px}button{border:0;border-radius:9px;padding:11px 14px;font-weight:700}.primary{background:#111;color:#fff}.secondary{background:#e8e8e8}.danger{background:#fee;color:#a00}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.item{border:1px solid #e5e5e5;border-radius:10px;padding:12px;margin:8px 0}.row{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:8px 0}.grand{font-size:21px;font-weight:800}.hint{background:#f7f7f7;border-radius:9px;padding:10px;margin-top:10px}.muted{color:#777;font-size:13px}.resultGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.resultBox{background:#f7f7f7;border-radius:10px;padding:10px}.resultBox b{display:block;font-size:18px;margin-top:4px}.warn{background:#fff6dd;border-radius:9px;padding:10px;margin-top:10px}.ok{background:#eef8ee;border-radius:9px;padding:10px;margin-top:10px}@media(max-width:800px){.grid4{grid-template-columns:repeat(2,1fr)}}@media(max-width:650px){.grid,.grid3,.grid4,.resultGrid{grid-template-columns:1fr}}@media print{header,nav,.noPrint{display:none!important}body{background:#fff}.card{box-shadow:none}}
+
+#boxScene *{box-sizing:border-box}
+.kufe3d{position:absolute;height:8px;background:#4b3823;border:1px solid #24190e;border-radius:3px;box-shadow:0 2px 2px #0004}
 </style></head><body>
 <header><div class="logo">STELKENS</div><div class="sub">Holzverpackungen · Kalkulation · Rechnungen</div></header>
-<nav><button class="active" onclick="show('rechnung',this)">🧾 Rechnung</button><button onclick="show('kalk',this)">🪵 Kisten</button><button onclick="show('paletten',this)">🪚 Paletten</button><button onclick="show('kunden',this)">👥 Kunden</button><button onclick="show('artikel',this)">📦 Artikel</button><button onclick="show('archiv',this)">📋 Archiv</button></nav>
+<nav><button onclick="show('bestellung',this)">🛒 Kundenbestellung</button><button class="active" onclick="show('rechnung',this)">🧾 Rechnung</button><button onclick="show('kalk',this)">🪵 Kisten</button><button onclick="show('paletten',this)">🪚 Paletten</button><button onclick="show('kunden',this)">👥 Kunden</button><button onclick="show('artikel',this)">📦 Artikel</button><button onclick="show('archiv',this)">📋 Archiv</button></nav>
 <main>
+
+<section id="bestellung" class="tab">
+<div class="card">
+  <h2>🛒 Kundenbestellung</h2>
+  <div class="hint">Dieser Bereich ist für Kunden gedacht. Sie können Kisten oder Paletten konfigurieren und eine Bestellanfrage mit allen Maßen und Angaben vorbereiten.</div>
+  <div class="grid">
+    <div><label>Name / Firma</label><input id="ordName"></div>
+    <div><label>E-Mail</label><input id="ordEmail" type="email"></div>
+    <div><label>Telefon</label><input id="ordPhone"></div>
+    <div><label>Lieferadresse</label><input id="ordAddress"></div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Was möchten Sie bestellen?</h3>
+  <div class="grid">
+    <div><label>Produkt</label>
+      <select id="ordProduct" onchange="orderProductChanged()">
+        <option value="kiste">Holzkiste</option>
+        <option value="palette2">2-Wege-Palette</option>
+        <option value="palette4">4-Wege-Palette</option>
+      </select>
+    </div>
+    <div><label>Anzahl</label><input id="ordQty" type="number" min="1" step="1" value="1"></div>
+  </div>
+
+  <div id="ordKiste" class="item">
+    <h3>🪵 Holzkiste</h3>
+    <div class="grid3">
+      <div><label>Länge (mm)</label><input id="ordKL" type="number" min="1" value="2400" oninput="updateKufenPreview()"></div>
+      <div><label>Breite (mm)</label><input id="ordKW" type="number" min="1" value="1200" oninput="renderKufen()"></div>
+      <div><label>Höhe (mm)</label><input id="ordKH" type="number" min="1" value="1500"></div>
+      <div><label>Ausführung</label><select id="ordKType"><option>Standard</option><option>Schwerlast</option><option>Export / IPPC</option><option>Individuell</option></select></div>
+      <div><label>Deckel</label><select id="ordKLid"><option>Nein</option><option>Ja</option></select></div>
+      <div><label>Staplerleisten</label><select id="ordFork"><option>Nein</option><option>Ja</option></select></div>
+    </div>
+  </div>
+
+  <div id="ordPalette" class="item" style="display:none">
+    <h3>🪚 Palette</h3>
+    <div class="grid3">
+      <div><label>Länge (mm)</label><input id="ordPL" type="number" min="1" value="1200"></div>
+      <div><label>Breite (mm)</label><input id="ordPW" type="number" min="1" value="800"></div>
+      <div><label>Höhe ca. (mm)</label><input id="ordPH" type="number" min="1" value="144"></div>
+      <div><label>Ausführung</label><select id="ordPBuild"><option>Standard</option><option>Schwerlast</option><option>Export / IPPC</option><option>Individuell</option></select></div>
+      <div><label>Deckart</label><select id="ordDeck"><option>geschlossen</option><option>offen</option></select></div>
+      <div><label>Sonderwunsch</label><input id="ordPSpecial" placeholder="z. B. andere Bretterstärke"></div>
+    </div>
+  </div>
+
+
+  <div id="kufenBlock" class="item">
+    <h3>🛷 Kufen / Schlitten</h3>
+    <div class="grid">
+      <div>
+        <label>Anzahl Kufen</label>
+        <select id="ordKufenCount" onchange="renderKufen()">
+          <option value="0">Keine Kufen</option>
+          <option value="2">2 Kufen</option>
+          <option value="3">3 Kufen</option>
+          <option value="4">4 Kufen</option>
+          <option value="5">5 Kufen</option>
+          <option value="6">6 Kufen</option>
+          <option value="custom">Freie Anzahl</option>
+        </select>
+      </div>
+      <div>
+        <label>Freie Anzahl</label>
+        <input id="ordKufenCustom" type="number" min="1" max="20" value="2" oninput="renderKufen()">
+      </div>
+    </div>
+
+    <div class="grid3">
+      <div><label>Kufenbreite (mm)</label><input id="ordKufenWidth" type="number" min="1" value="100"></div>
+      <div><label>Kufenhöhe (mm)</label><input id="ordKufenHeight" type="number" min="1" value="100"></div>
+      <div><label>Kufenstärke (mm)</label><input id="ordKufenThick" type="number" min="1" value="50"></div>
+    </div>
+
+    <div class="hint" style="margin-top:12px">
+      Position der Kufen von links in mm. Die Vorschau passt sich an die Kistenbreite an.
+    </div>
+
+    <div id="kufenPositions" style="margin-top:12px"></div>
+    <div class="item" style="margin-top:14px;background:#fafafa">
+      <div style="font-weight:700;margin-bottom:8px">🧊 Interaktive 3D-Ansicht</div>
+      <div class="hint">Mit Maus oder Finger drehen. Die Kufen werden an den gewählten Positionen dargestellt.</div>
+      <div id="kufen3d" style="position:relative;height:310px;overflow:hidden;border-radius:12px;background:linear-gradient(#f4f4f4,#e5e5e5);border:1px solid #ddd;touch-action:none;cursor:grab">
+        <div id="boxScene" style="position:absolute;left:50%;top:50%;width:220px;height:150px;transform-style:preserve-3d;transform:translate(-50%,-50%) rotateX(-20deg) rotateY(-28deg);">
+          <div id="boxTop" style="position:absolute;inset:0;background:rgba(196,157,104,.78);border:2px solid #7b5b36;transform:translateZ(42px);"></div>
+          <div id="boxBottom" style="position:absolute;inset:0;background:#8b683f;border:2px solid #6d4e2b;transform:rotateY(180deg) translateZ(42px);"></div>
+          <div id="boxFront" style="position:absolute;left:0;top:0;width:220px;height:84px;background:#a77d4b;border:2px solid #6d4e2b;transform-origin:bottom;transform:rotateX(-90deg) translateZ(0);"></div>
+          <div id="boxBack" style="position:absolute;left:0;top:0;width:220px;height:84px;background:#91683e;border:2px solid #6d4e2b;transform-origin:top;transform:rotateX(90deg) translateZ(150px);"></div>
+          <div id="boxLeft" style="position:absolute;left:0;top:0;width:84px;height:150px;background:#9a703f;border:2px solid #6d4e2b;transform-origin:left;transform:rotateY(90deg) translateZ(0);"></div>
+          <div id="boxRight" style="position:absolute;left:0;top:0;width:84px;height:150px;background:#b1834e;border:2px solid #6d4e2b;transform-origin:right;transform:rotateY(-90deg) translateZ(220px);"></div>
+          <div id="kufen3dBars"></div>
+        </div>
+        <div id="boxDims" style="position:absolute;left:12px;bottom:10px;background:#fff9;padding:7px 9px;border-radius:7px;font-size:12px"></div>
+      </div>
+      <div id="kufenWarning" class="warn" style="display:none"></div>
+    </div>
+  </div>
+
+  <div class="item">
+    <label>Sonderwünsche / Bemerkungen</label>
+    <textarea id="ordNote" rows="4" style="width:100%;padding:11px;border:1px solid #ddd;border-radius:9px;font-size:15px"></textarea>
+  </div>
+
+  <div class="actions noPrint">
+    <button class="primary" onclick="prepareOrder()">📋 Bestellung zusammenstellen</button>
+    <button class="secondary" onclick="sendOrderEmail()">✉️ Bestellanfrage per E-Mail</button>
+    <button class="secondary" onclick="printOrder()">🖨️ Anfrage drucken / PDF</button>
+  </div>
+  <div id="orderResult"></div>
+</div>
+
+<div class="card">
+  <h3>💡 Wichtig</h3>
+  <div class="muted">Die Kundenansicht zeigt keine internen Einkaufspreise oder Aufschläge. Für eine echte zentrale Online-Bestellung ohne E-Mail-Programm brauchen wir später noch einen kleinen Bestellserver bzw. einen Formular-Dienst. Die aktuelle Version kann die vollständige Anfrage direkt als E-Mail vorbereiten oder als PDF ausgeben.</div>
+</div>
+</section>
+
 <section id="rechnung" class="tab on"><div class="card"><h2>Neue Rechnung</h2><div class="grid"><div><label>Rechnungsnummer</label><input id="invNo"></div><div><label>Datum</label><input id="invDate" type="date"></div><div><label>Kunde</label><select id="cust"></select></div><div><label>Zahlungsziel (Tage)</label><input id="due" type="number" value="14"></div></div><h3>Positionen</h3><div id="lines"></div><div class="actions noPrint"><button class="secondary" onclick="addLine()">+ Position</button><button class="secondary" onclick="takeBox()">+ Holzkiste</button><button class="secondary" onclick="takePallet()">+ Palette</button></div></div>
 <div class="card"><h2>Summen</h2><div class="row"><span>Netto</span><b id="net">0,00 €</b></div><div class="row"><span>MwSt. 19 %</span><b id="vat">0,00 €</b></div><div class="row grand"><span>Gesamt</span><b id="gross">0,00 €</b></div><div class="actions noPrint"><button class="primary" onclick="printInvoice()">🖨️ PDF / Drucken</button><button class="secondary" onclick="saveInvoice()">💾 Speichern</button></div></div></section>
 <section id="kalk" class="tab"><div class="card"><h2>🪵 Holzkisten-Kalkulation</h2><div class="grid3"><div><label>Länge (m)</label><input id="L" type="number" step=".01" value="2.40"></div><div><label>Breite (m)</label><input id="W" type="number" step=".01" value="1.20"></div><div><label>Höhe (m)</label><input id="H" type="number" step=".01" value="1.50"></div><div><label>Anzahl Kisten</label><input id="Q" type="number" value="1"></div><div><label>Material je Kiste (€)</label><input id="M" type="number" step=".01" value="300"></div><div><label>Arbeitsstunden je Kiste</label><input id="AH" type="number" step=".25" value="4"></div><div><label>Stundensatz (€)</label><input id="AR" type="number" step=".01" value="45"></div><div><label>Transport (€)</label><input id="TR" type="number" step=".01" value="120"></div><div><label>Aufschlag (%)</label><input id="MK" type="number" step=".1" value="20"></div></div><div class="actions"><button class="primary" onclick="calcBox()">Kalkulieren</button><button class="secondary" onclick="takeBox()">In Rechnung übernehmen</button></div><div id="boxResult"></div></div>
@@ -53,6 +177,155 @@ function newArticle(){let a={name:$('an').value,unit:$('au').value,price:num('ap
 function render(){$('cust').innerHTML='<option value="">Kunde auswählen</option>'+customers.map((c,i)=>`<option value="${i}">${c.name}</option>`).join('');$('customerList').innerHTML=customers.length?customers.map(c=>`<div class="item"><b>${c.name}</b><div class="muted">${c.address||''} ${c.city||''}<br>${c.email||''} ${c.phone||''}</div></div>`).join(''):'<span class="muted">Keine Kunden vorhanden.</span>';$('articleList').innerHTML=articles.length?articles.map(a=>`<div class="item"><b>${a.name}</b> – ${money(a.price)} / ${a.unit}</div>`).join(''):'<span class="muted">Keine Artikel vorhanden.</span>';$('archive').innerHTML=invoices.length?invoices.slice().reverse().map(x=>`<div class="item"><b>${x.no}</b> – ${x.customer||'Ohne Kunde'} – ${money(x.gross)}<div class="muted">${x.date}</div></div>`).join(''):'<span class="muted">Noch keine Rechnungen.</span>'}
 function saveInvoice(){let n=calcInvoice(),c=customers[+$('cust').value],lines=[...document.querySelectorAll('.line')].map(x=>({name:x.querySelector('.ln').value,qty:+x.querySelector('.lq').value||0,unit:x.querySelector('.lu').value,price:+x.querySelector('.lp').value||0}));invoices.push({no:$('invNo').value,date:$('invDate').value,customer:c?c.name:'',lines,net:n,vat:n*.19,gross:n*1.19});persist();render();alert('Rechnung gespeichert.')}
 function printInvoice(){calcInvoice();window.print()}
+
+const ORDER_EMAIL='IHRE-BESTELLUNGSEMAIL-HIER-EINTRAGEN';
+
+function getKufenCount(){
+  const v=$('ordKufenCount').value;
+  if(v==='0') return 0;
+  if(v==='custom') return Math.max(1,Math.min(20,Number($('ordKufenCustom').value)||1));
+  return Number(v)||0;
+}
+function renderKufen(){
+  const count=getKufenCount();
+  const positions=$('kufenPositions');
+  const bars=$('kufenBars');
+  const width=Math.max(1,Number($('ordKW').value)||1);
+  positions.innerHTML='';
+  bars.innerHTML='';
+  if(count===0){$('kufenWarning').style.display='none';return;}
+  for(let i=0;i<count;i++){
+    const wrap=document.createElement('div');
+    wrap.className='item';
+    wrap.style.marginTop='8px';
+    wrap.innerHTML=`<div class="grid"><div><label>Kufe ${i+1} – Position von links (mm)</label><input class="kufen-pos" data-index="${i}" type="number" min="0" max="${width}" value="${Math.round(width*(i+1)/(count+1))}" oninput="updateKufenPreview()"></div><div><label>Ausrichtung</label><select class="kufen-orient"><option value="quer">Quer zur Länge</option><option value="laengs">Längs zur Länge</option></select></div></div>`;
+    positions.appendChild(wrap);
+  }
+  updateKufenPreview();
+}
+function updateKufenPreview(){
+  const width=Math.max(1,Number($('ordKW').value)||1);
+  const length=Math.max(1,Number($('ordKL').value)||1);
+  const height=Math.max(1,Number($('ordKH').value)||1);
+  const count=getKufenCount();
+  const bars=$('kufen3dBars');
+  const warn=$('kufenWarning');
+  const dims=$('boxDims');
+  if(!bars||!warn)return;
+  bars.innerHTML='';
+  dims.textContent=`Kiste: ${length} × ${width} × ${height} mm`;
+  let invalid=[];
+  document.querySelectorAll('.kufen-pos').forEach((el,i)=>{
+    const p=Number(el.value);
+    if(!Number.isFinite(p)||p<0||p>width) invalid.push(i+1);
+    const bar=document.createElement('div');
+    bar.className='kufe3d';
+    const pct=Math.max(0,Math.min(100,(p/width)*100));
+    bar.style.width='32px';
+    bar.style.left=`calc(${pct}% - 16px)`;
+    bar.style.top='62px';
+    bar.style.transform='translateZ(22px) rotateZ(90deg)';
+    bar.title=`Kufe ${i+1}: ${p} mm von links`;
+    bars.appendChild(bar);
+  });
+  if(invalid.length){
+    warn.style.display='block';
+    warn.textContent=`Bitte Position ${invalid.join(', ')} korrigieren. Sie muss zwischen 0 und ${width} mm liegen.`;
+  }else{
+    warn.style.display='none';
+  }
+}
+function init3DRotation(){
+  const area=$('kufen3d'), scene=$('boxScene');
+  if(!area||!scene||area.dataset.ready)return;
+  area.dataset.ready='1';
+  let dragging=false,lastX=0,lastY=0,rx=-20,ry=-28;
+  const apply=()=>scene.style.transform=`translate(-50%,-50%) rotateX(${rx}deg) rotateY(${ry}deg)`;
+  area.addEventListener('pointerdown',e=>{dragging=true;lastX=e.clientX;lastY=e.clientY;area.setPointerCapture?.(e.pointerId);area.style.cursor='grabbing'});
+  area.addEventListener('pointermove',e=>{
+    if(!dragging)return;
+    ry+=(e.clientX-lastX)*0.7; rx-=(e.clientY-lastY)*0.5;
+    rx=Math.max(-75,Math.min(20,rx)); lastX=e.clientX;lastY=e.clientY;apply();
+  });
+  area.addEventListener('pointerup',()=>{dragging=false;area.style.cursor='grab'});
+  area.addEventListener('pointercancel',()=>{dragging=false;area.style.cursor='grab'});
+}
+function getKufenData(){
+  const count=getKufenCount();
+  if(count===0) return {summary:'keine',positionsText:'keine',sizeText:''};
+  const width=Math.max(1,Number($('ordKW').value)||1);
+  const positions=[...document.querySelectorAll('.kufen-pos')].map((el,i)=>({n:i+1,p:Number(el.value)||0,orientation:document.querySelectorAll('.kufen-orient')[i]?.value||'quer'}));
+  const invalid=positions.some(x=>x.p<0||x.p>width);
+  if(invalid) return {summary:`${count} Kufen (Position prüfen)`,positionsText:positions.map(x=>`Kufe ${x.n}: ${x.p} mm`).join('; '),sizeText:`${$('ordKufenWidth').value} × ${$('ordKufenHeight').value} × ${$('ordKufenThick').value} mm`};
+  return {
+    summary:`${count} Kufen`,
+    positionsText:positions.map(x=>`Kufe ${x.n}: ${x.p} mm von links, ${x.orientation}`).join('; '),
+    sizeText:`${$('ordKufenWidth').value} × ${$('ordKufenHeight').value} × ${$('ordKufenThick').value} mm`
+  };
+}
+
+function orderProductChanged(){
+  const p=$('ordProduct').value, isKiste=p==='kiste';
+  $('ordKiste').style.display=isKiste?'block':'none';
+  $('ordPalette').style.display=isKiste?'none':'block';
+  $('kufenBlock').style.display=isKiste?'block':'none';
+  if(!isKiste){
+    $('ordPBuild').value='Standard';
+  }
+}
+function orderData(){
+  const p=$('ordProduct').value, q=Math.max(1,num('ordQty'));
+  const base={
+    name:$('ordName').value.trim(),email:$('ordEmail').value.trim(),phone:$('ordPhone').value.trim(),
+    address:$('ordAddress').value.trim(),qty:q,note:$('ordNote').value.trim()
+  };
+  if(p==='kiste'){
+    base.product='Holzkiste';
+    base.details={
+      masse:`${$('ordKL').value} × ${$('ordKW').value} × ${$('ordKH').value} mm`,
+      ausfuehrung:$('ordKType').value,deckel:$('ordKLid').value,staplerleisten:$('ordFork').value
+    };
+  }else{
+    base.product=$('ordProduct').value==='palette4'?'4-Wege-Palette':'2-Wege-Palette';
+    base.details={
+      masse:`${$('ordPL').value} × ${$('ordPW').value} × ${$('ordPH').value} mm`,
+      ausfuehrung:$('ordPBuild').value,deckart:$('ordDeck').value,sonderwunsch:$('ordPSpecial').value.trim()
+    };
+  }
+  return base;
+}
+function prepareOrder(){
+  const o=orderData();
+  if(!o.name || !o.email){$('orderResult').innerHTML='<div class="warn">Bitte mindestens Name/Firma und E-Mail eintragen.</div>';return o}
+  const d=o.details;
+  $('orderResult').innerHTML=`<div class="ok"><strong>Bestellanfrage vorbereitet</strong><br>${o.qty} × ${o.product}<br>Maße: ${d.masse}<br>Ausführung: ${d.ausfuehrung}<br>${d.kufen?`Kufen: ${htmlEscape(d.kufen.summary)}<br>Positionen: ${htmlEscape(d.kufen.positionsText)}<br>`:''}${o.note?`Bemerkung: ${htmlEscape(o.note)}<br>`:''}<br>Die Anfrage kann jetzt per E-Mail gesendet oder als PDF gedruckt werden.</div>`;
+  return o;
+}
+function htmlEscape(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function sendOrderEmail(){
+  const o=prepareOrder();
+  if(!o || !o.name || !o.email)return;
+  if(ORDER_EMAIL.includes('HIER_EINTRAGEN')){
+    $('orderResult').innerHTML += '<div class="warn">Die Bestell-E-Mail-Adresse von STELKENS ist noch nicht hinterlegt. In der Datei muss <b>ORDER_EMAIL</b> einmal mit deiner Firmen-E-Mail ersetzt werden.</div>';
+    return;
+  }
+  const d=o.details;
+  const subject=encodeURIComponent(`STELKENS Bestellanfrage – ${o.product} – ${o.qty} Stück`);
+  const body=encodeURIComponent(
+`Neue Bestellanfrage\n\nKunde/Firma: ${o.name}\nE-Mail: ${o.email}\nTelefon: ${o.phone}\nLieferadresse: ${o.address}\n\nProdukt: ${o.product}\nAnzahl: ${o.qty}\nMaße: ${d.masse}\nAusführung: ${d.ausfuehrung}\nDeckel/Deckart: ${d.deckel||d.deckart||''}\nStaplerleisten: ${d.staplerleisten||''}\nSonderwunsch: ${d.sonderwunsch||''}\nBemerkungen: ${o.note||''}`
+  );
+  window.location.href=`mailto:${ORDER_EMAIL}?subject=${subject}&body=${body}`;
+}
+function printOrder(){
+  const o=prepareOrder();
+  if(!o || !o.name || !o.email)return;
+  const d=o.details;
+  const w=window.open('','_blank');
+  if(!w)return;
+  w.document.write(`<html><head><title>STELKENS Bestellanfrage</title><style>body{font-family:Arial;padding:35px}h1{font-size:24px}.row{padding:8px 0;border-bottom:1px solid #ddd}</style></head><body><h1>STELKENS – Bestellanfrage</h1><div class="row"><b>Kunde/Firma:</b> ${htmlEscape(o.name)}</div><div class="row"><b>E-Mail:</b> ${htmlEscape(o.email)}</div><div class="row"><b>Telefon:</b> ${htmlEscape(o.phone)}</div><div class="row"><b>Lieferadresse:</b> ${htmlEscape(o.address)}</div><div class="row"><b>Produkt:</b> ${htmlEscape(o.product)}</div><div class="row"><b>Anzahl:</b> ${o.qty}</div><div class="row"><b>Maße:</b> ${htmlEscape(d.masse)}</div><div class="row"><b>Ausführung:</b> ${htmlEscape(d.ausfuehrung)}</div><div class="row"><b>Bemerkungen:</b> ${htmlEscape(o.note)}</div><p>Erstellt am ${new Date().toLocaleString('de-DE')}</p></body></html>`);
+  w.document.close();w.focus();w.print();
+}
+
 function persist(){localStorage.setItem('st_customers',JSON.stringify(customers));localStorage.setItem('st_articles',JSON.stringify(articles));localStorage.setItem('st_invoices',JSON.stringify(invoices))}
-$('invNo').value=nextNo();$('invDate').value=new Date().toISOString().slice(0,10);addLine();render();
+$('ordProduct').value='kiste'; orderProductChanged(); renderKufen(); init3DRotation(); $('invNo').value=nextNo();$('invDate').value=new Date().toISOString().slice(0,10);addLine();render();
 </script></body></html>
